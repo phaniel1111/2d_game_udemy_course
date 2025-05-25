@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://bt57bw2eog8nn"]
+
+[ext_resource type="Script" uid="uid://ct5wmqgnny5ff" path="res://scripts/game.gd" id="1_lbhrr"]
+[ext_resource type="Texture2D" uid="uid://dkjfke64lhfjn" path="res://assets/GameBg.png" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://c26gr4ky6u5o" path="res://scenes/paddle.tscn" id="2_yqjtg"]
+[ext_resource type="AudioStream" uid="uid://r2vnf6b3gyew" path="res://assets/bgm_action_5.mp3" id="4_lbhrr"]
+[ext_resource type="AudioStream" uid="uid://e5im8361aubl" path="res://assets/spell1_0.wav" id="5_iywne"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_lbhrr")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(576, 326)
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("1_uwrxv")
+
+[node name="Paddle" parent="." instance=ExtResource("2_yqjtg")]
+position = Vector2(563, 594)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_lbhrr")
+volume_db = -15.0
+autoplay = true
+
+[node name="ScoreSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_iywne")
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = 48.0
+offset_top = 31.0
+offset_right = 88.0
+offset_bottom = 54.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.960975, 0.578353, 0.863465, 1)
+theme_override_colors/font_outline_color = Color(0.417665, 0.789613, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 48
+text = "000"
+
+[connection signal="area_entered" from="Paddle" to="." method="_on_paddle_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
