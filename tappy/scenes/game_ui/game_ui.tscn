@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqtd4it7edugh"]
+
+[ext_resource type="FontFile" uid="uid://b5proh8ixt5rr" path="res://assets/fonts/gemunu-libre-v8-latin-700.ttf" id="1_1i64n"]
+[ext_resource type="Script" uid="uid://c2x0fway0uljk" path="res://scenes/game_ui/game_ui.gd" id="1_najyh"]
+[ext_resource type="LabelSettings" uid="uid://cry2tqu1o0taf" path="res://resources/title.tres" id="2_najyh"]
+[ext_resource type="AudioStream" uid="uid://dxc6q8qxavjvg" path="res://assets/audio/score.wav" id="4_2cwxn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2cwxn"]
+font = ExtResource("1_1i64n")
+font_size = 48
+
+[node name="GameUI" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_najyh")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+
+[node name="Score" type="Label" parent="MarginContainer"]
+layout_mode = 2
+text = "0000"
+label_settings = SubResource("LabelSettings_2cwxn")
+
+[node name="SpressSpaceLabel" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.5
+offset_top = -11.5
+offset_right = 45.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press Space"
+label_settings = ExtResource("2_najyh")
+
+[node name="GameOverLabel" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = -11.5
+offset_right = 43.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Game Over"
+label_settings = ExtResource("2_najyh")
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_2cwxn")
